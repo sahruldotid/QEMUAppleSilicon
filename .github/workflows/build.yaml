@@ -15,7 +15,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libnfs-dev liburing-dev build-essential libtool meson ninja-build pkg-config libcapstone-dev device-tree-compiler libglib2.0-dev gnutls-bin libjpeg-turbo8-dev libpng-dev libslirp-dev libssh-dev libusb-1.0-0-dev liblzo2-dev libncurses5-dev libpixman-1-dev libsnappy-dev vde2 zstd libgnutls28-dev libgmp10 libgmp3-dev lzfse liblzfse-dev
+          sudo apt-get install -y libnfs-dev libaio-dev liburing-dev build-essential libtool meson ninja-build pkg-config libcapstone-dev device-tree-compiler libglib2.0-dev gnutls-bin libjpeg-turbo8-dev libpng-dev libslirp-dev libssh-dev libusb-1.0-0-dev liblzo2-dev libncurses5-dev libpixman-1-dev libsnappy-dev vde2 zstd libgnutls28-dev libgmp10 libgmp3-dev lzfse liblzfse-dev
       - name: Build nettle 3.10.2
         run: |
           wget https://ftpmirror.gnu.org/gnu/nettle/nettle-3.10.2.tar.gz
@@ -29,7 +29,7 @@ jobs:
         run: |
           mkdir build
           cd build
-          PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/local/lib64/pkgconfig:$PKG_CONFIG_PATH LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH ../configure --target-list=aarch64-softmmu,x86_64-softmmu --enable-capstone --enable-slirp --enable-lzfse --enable-nettle --enable-gnutls --enable-curses --enable-libssh --enable-virtfs --enable-zstd --enable-gtk --enable-sdl --disable-werror
+          PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/local/lib64/pkgconfig:$PKG_CONFIG_PATH LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH ../configure --disable-docs --target-list=aarch64-softmmu,x86_64-softmmu --enable-capstone --enable-slirp --enable-lzfse --enable-nettle --enable-gnutls --enable-curses --enable-libssh --enable-virtfs --enable-zstd --enable-gtk --enable-sdl --disable-werror
           make -j$(nproc)
       - name: Install
         run: |
