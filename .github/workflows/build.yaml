@@ -29,7 +29,7 @@ jobs:
         run: |
           mkdir build
           cd build
-          PKG_CONFIG_PATH=/usr/local/lib64/pkgconfig ../configure --target-list=aarch64-softmmu,x86_64-softmmu --enable-capstone --enable-slirp --enable-lzfse --enable-nettle --enable-gnutls --enable-curses --enable-libssh --enable-virtfs --enable-zstd --enable-gtk --enable-sdl --disable-werror
+          PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/local/lib64/pkgconfig:$PKG_CONFIG_PATH LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH ../configure --target-list=aarch64-softmmu,x86_64-softmmu --enable-capstone --enable-slirp --enable-lzfse --enable-nettle --enable-gnutls --enable-curses --enable-libssh --enable-virtfs --enable-zstd --enable-gtk --enable-sdl --disable-werror
           make -j$(nproc)
       - name: Install
         run: |
